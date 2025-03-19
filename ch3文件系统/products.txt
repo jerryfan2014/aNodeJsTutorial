@@ -1,0 +1,3 @@
+PC005-3A, 101mm, 108
+PC008-1 with diode, 93mm, 216
+PC008-3A, 99mm, 295
