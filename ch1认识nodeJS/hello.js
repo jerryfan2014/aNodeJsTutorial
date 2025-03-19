@@ -10,7 +10,6 @@
 // console.info("info")
 // console.warn("warn")
 // console.error("error")
-// // warning
 
 // console.table([{name:"tom", age:"18", sex:"男"}, {name:"lisa", age:"18", sex:"女"}])
 
