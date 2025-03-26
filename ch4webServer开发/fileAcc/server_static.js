@@ -14,6 +14,7 @@ server.on('request', function(request, response) {
 	var url = urlModule.parse(request.url).pathname; 
 	 if (url === '/') { 
 	 //读取相应静态资源内容
+		//  path.join(__dirname, 'static/index.html') == path.join(__dirname, 'static', '/index.html')
 		 fs.readFile(path.join(__dirname, 'static/index.html'), 'utf-8', function(err, data) { 
 		 //如果出现异常，则抛出异常
 			 if (err) { 
@@ -34,17 +35,17 @@ server.on('request', function(request, response) {
 			 } 
 		 }); 
 	 //如果有图片、CSS 文件等，浏览器会重新发送请求获取静态资源
-	 } else if (url === '/css/main.css') { 
+	 } else if (url === '/main.css') { 
 		 var cssPath = path.join(__dirname, 'static/css/main.css') 
 		 fs.readFile(cssPath, 'utf-8', function(err, data) { 
 			 if (err) { 
 				console.log(err); 
 			 }else{ 
-				 response.setHeader('content-type', mimeTypes['css']); 
+				 response.setHeader('content-type', mimeTypes['css']);  // mimeTypes.css
 				 response.end(data);
 			} 
 		 }); 
-	 } else if (url === '/images/pro-1.jpg') { 
+	 } else if (url === '/pro-1.jpg') { 
 		 var imgPath = path.join(__dirname,'static/images/pro-1.jpg') 
 		 fs.readFile(imgPath, function(err, data) { 
 			 if (err) { 
@@ -54,7 +55,7 @@ server.on('request', function(request, response) {
 				 response.end(data);
 			} 
 		 }); 
-	 } else if (url === '/images/pro-2.jpg') { 
+	 } else if (url === '/pro-2.jpg') { 
 		 var imgPath = path.join(__dirname,'static/images/pro-2.jpg') 
 		 fs.readFile(imgPath, function(err, data) { 
 			 if (err) { 
@@ -75,6 +76,6 @@ server.on('request', function(request, response) {
 		 }); 
 	 } 
 }); 
-server.listen(3000, function() { 
- console.log('listening port 3000...'); 
+server.listen(8002, function() { 
+ console.log('listening port 8002...'); 
 });

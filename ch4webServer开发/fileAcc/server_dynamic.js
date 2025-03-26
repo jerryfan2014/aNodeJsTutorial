@@ -23,6 +23,6 @@ server.on('request', function(req, res) {
     res.end(data);
   });
 });
-server.listen(3000, function() {
-  console.log('server is runnig at port 3000');
+server.listen(8001, function() {
+  console.log('server is runnig at port 8001');
 });
