@@ -1,5 +1,6 @@
 // 导入format模块
 let fo = require("./format")
+// 方式1 本地定义products
 // let products = [
 //     { 
 //     "name": "PC005-3A", 
@@ -17,6 +18,8 @@ let fo = require("./format")
 //     "add_time":"2022-12-7" 
 //     } 
 // ] 
+
+// 方式2 将products定义到products.js文件中(数据和逻辑分离、共享)
 let po = require("./products")
 let products = po.products;
 for (i =0 ; i < products.length; i++) {
