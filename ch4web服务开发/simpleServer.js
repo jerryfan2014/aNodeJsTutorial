@@ -26,6 +26,8 @@ server.on("request", (req, res) => {
 })
 
 // 监听浏览器请求request;端口未被占用
-server.listen(8000, () => {
-    console.log("本地服务8000端口监听中...")
-})
+// server.listen(8000, () => {
+//     console.log("本地服务8000端口监听中...")
+// })
+
+server.listen(8000)

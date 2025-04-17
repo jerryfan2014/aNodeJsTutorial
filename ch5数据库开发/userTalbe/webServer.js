@@ -6,21 +6,31 @@ server = http.createServer();
 // 设置server的响应事件
 server.on("request", function(req, res) {
     res.writeHead(200, {
-        "content-type":"text/plain;charset=utf-8"
+        "content-type":"text/html;charset=utf-8"
     });
-
     // 生成响应体数据
-    userData.getUserList(function(err, result) {
-        //遍历result， 生成一个table
-        for (i = 0; i < result.length;i++) {
-            userStr = result[i].id + " | "
-            + result[i].name + " | "
-            + result[i].age + " | "
-            + result[i].email            
-            console.log(userStr);
+    userData.getUserList(function(err, userArr) {
+        // 定义一个字符串变量tableStr，这个变量用于生成包含user数据的html表格
+        let tableStr = "<html><table border='1'>"
+        // 生成表头
+        tableStr += "<tr>" +
+                        "<td>ID</td>" +
+                        "<td>Name</td>" +
+                        "<td>Age</td>" +
+                        "<td>Email</td>" +
+                        "</tr>";
+        //遍历result， 生成一个tableStr
+        for (i = 0; i < userArr.length;i++) {
+            tableStr += "<tr>";
+            tableStr += "<td>" + userArr[i].id + "</td>";
+            tableStr += "<td>" + userArr[i].name + "</td>";
+            tableStr += "<td>" + userArr[i].age + "</td>";
+            tableStr += "<td>" + userArr[i].email + "</td>";
+            tableStr += "</tr>";
         }
-        
-        res.end(userStr);        
+
+        tableStr += "</table></html>"
+        res.end(tableStr);        
     });
 });
 
