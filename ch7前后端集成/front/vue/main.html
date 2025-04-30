@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 Homepage</title>
+    <style>
+        /* 设置左右布局，左边宽度为20%，右边宽度为80% */
+        .container {
+            display: flex;
+            flex-direction: row;
+            height: 100vh;
+        }
+        .menu {
+            width: 20%;
+            background-color: #f0f0f0;
+        }
+        .content {
+            width: 80%;
+            background-color: #fff;
+        }
+        /* 调整菜单样式 */
+        .menu ul {
+            list-style: none;
+            padding: 0;
+            margin: 20px;
+        }
+        .menu li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        .menu li:hover {
+            background-color: #e0e0e0;
+        }
+        /* 调整列表样式 */
+        .content ul {
+            list-style: none;
+            padding: 20px;
+        }
+        .content li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="container">
+            <!-- 左边菜单区域 -->
+            <div class="menu">
+                <h2>示例菜单</h2>
+                <ul>
+                    <li @click="selectMenu('menu1')">菜单1</li>
+                    <li @click="selectMenu('menu2')">菜单2</li>
+                    <li @click="selectMenu('menu3')">菜单3</li>
+                </ul>
+            </div>
+            <!-- 右边列表区域 -->
+            <div class="content">
+                <h2>列表</h2>
+                <ul>
+                    <li v-for="(item, index) in list" :key="index">{{ item }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    list: ['列表项1', '列表项2', '列表项3', '列表项4', '列表项5']
+                }
+            },
+            methods: {
+                selectMenu(menu) {
+                    alert('选中了菜单：' + menu);
+                }
+            }
+        });
+        app.mount('#app');
+    </script>
+</body>
+</html>

@@ -15,6 +15,7 @@ userRouter.post("/user/update", (req, res) =>{
 })
 
 userRouter.get("/user/delete/:id", (req, res) =>{
+    console.log("req.query:" + req.query);
     res.send(req.url + ", id=" + req.params.id +", 删除用户")
 })
 
