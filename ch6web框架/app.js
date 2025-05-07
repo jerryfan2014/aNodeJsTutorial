@@ -7,18 +7,14 @@ app.get("/", (req, res) => {
     console.log(req.url);
 
     res.send("hello, express!")
-
 });
-
 
 app.all("/hello", (req, res) => {
     console.log(req.method);
     console.log(req.url);    
 
     res.send("postMethod-------------")
-
 });
-
 
 // app.get("/ab?cd", (req, res) => {
 // regExpress对象
@@ -40,7 +36,7 @@ app.get(/ab(ef)+d/, (req, res) => {
 });
 
 // 路径变量/路径参数
-app.get("/user/:userId/:action", (req, res) => {
+app.get("/user/:action/:userId", (req, res) => {
     console.log("req.params:", req.params)
     console.log("userId:", req.params.userId)
     console.log("userId:", req.userId)
