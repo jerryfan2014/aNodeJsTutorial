@@ -1,0 +1,12 @@
+<html>
+    <form action="/multiFileUpload" 
+          enctype="multipart/form-data"
+          method="post">
+
+        <label>姓名：</label>  <input  type="text" name="userName" ><br>
+        <label>年龄：</label>  <input  type="text" name="userAge" ><br>
+        <label>邮箱：</label>  <input  type="text" name="userEmail" ><br>
+        <input type="file" name="uploadFiles" multiple>
+        <input type="submit" value="多文件提交"/>
+    </form>
+</html>

@@ -22,7 +22,7 @@ app.use(function middleware2(req, res, next){
 });
 
 // 添加静态资源文件读取
-app.use(express.static(__dirname + "/static"));
+app.use(express.static(__dirname + "/../static"));
 // 添加表单处理的中间件
 app.use(express.urlencoded({ extended: true }))
 
