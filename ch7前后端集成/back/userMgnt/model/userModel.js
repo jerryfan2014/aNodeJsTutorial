@@ -85,5 +85,33 @@ function deleteUser(userId, callback){
     })
 }
 
+
+function searchUser(userParam, callback){
+
+    let sql = "SELECT * FROM user WHERE 1=1 ";
+    // 变量初始化为空数组
+    let params = [];
+    // name查询去除空串或空格串
+    if (userParam.name != null && userParam.name.trim() != "") {        
+        sql += " AND name like ?"
+        params.push(userParam.name + "%")
+    }
+
+    if (userParam.age != null && userParam.age.trim() != "") {
+        sql += " AND age > ?"
+        params.push(userParam.age)
+    }
+
+    console.log("sql:" + sql)
+    console.log("params:" + params)
+    pool.query(sql, params, (err,data) => {
+        if (err) {
+            callback(err, null);
+        } else {
+            callback(null, data);
+        }
+    })
+}
+
 module.exports = {getUserList, saveUser, 
-    getUser,deleteUser}
+    getUser,deleteUser, searchUser}

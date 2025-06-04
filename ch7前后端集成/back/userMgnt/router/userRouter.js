@@ -61,6 +61,24 @@ userRouter.delete("/user/del/:userId", function(req, res) {
     })
 })
 
+// 条件查询
+userRouter.get("/user/search", function(req, res) {
+    
+    let userParam = req.query;
+    // console.log(userParam)
+    userModel.searchUser(userParam, function(err, data){
+        if (err) {
+            // 写日志，记录系统异常
+            throw err;
+        } else {
+            // res.send(data)
+            // console.log(data)
+            res.send(Result.success(data))
+        }
+    })
+})
+
+
 // module.exports = {userRouter}
 module.exports = userRouter
 
