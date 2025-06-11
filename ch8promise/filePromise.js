@@ -1,5 +1,6 @@
 const fs = require("fs")
 
+// 读文件方法1
 // 文件路径
 const filePath = __dirname + "/../README.md"
 fs.readFile(filePath, function(err, data){
@@ -12,8 +13,20 @@ fs.readFile(filePath, function(err, data){
     }
 })
 
+// 读文件方法2
 // 导入fs的promises对象
-const fs2 = require("fs").promises
-fs2.readFile(filePath)
+const fsPromise = require("fs").promises
+fsPromise.readFile(filePath)
     .then((data) => {console.log("promise风格：" + data.toString())})
     .catch((err) => {throw err})
+
+
+// 读文件方法3 ,在commonJS环境中使用
+(async function(){
+    try{
+        const data = await fsPromise.readFile(filePath);
+        console.log("async/await语法：" + data.toString())
+    }catch(err) {
+        throw err;
+    } 
+})();
