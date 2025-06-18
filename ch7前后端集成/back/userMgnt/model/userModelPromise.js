@@ -1,5 +1,5 @@
 // const dbUtil = require(__dirname + "/dbUtilPromise")
-const dbUtil = require("./dbUtilPromise")
+const dbUtil = require("../db/dbUtilPromise")
 const connPool = dbUtil.getConnPool()
 
 // 定义函数,返回的是promise对象
@@ -14,23 +14,8 @@ function getUserList() {
             throw err
         })
 }
-// 调用函数,注意是promise对象
-// getUserList()
-//     .then((result) => {console.log(result)})
-//     .catch((err) => {throw err});
 
-// async/await方式实现getUserList函数    
-(async function(){
-    try{
-        const sql = "SELECT * FROM user"
-        const [data] = await connPool.query(sql);
-        console.log("aysnc/await::")
-        console.log(data)
-    }catch(err) {
-        throw err;
-    }
-})();
-
+// 返回对象是一个promise
 function getUserById(userId) {
     const sql = "SELECT * FROM user WHERE id = ?"
     return connPool.query(sql, [userId])
@@ -41,12 +26,9 @@ function getUserById(userId) {
             // 也可以返回一个json对象
             throw err
         })
-}
-    
-// getUserById(5)
-//     .then((result) => {console.log(result)})
-//     .catch((err) => {throw err})
+}    
 
-module.exports = {getUserList}
+
+module.exports = {getUserList, getUserById}
 
 

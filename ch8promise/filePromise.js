@@ -18,7 +18,7 @@ fs.readFile(filePath, function(err, data){
 const fsPromise = require("fs").promises
 fsPromise.readFile(filePath)
     .then((data) => {console.log("promise风格：" + data.toString())})
-    .catch((err) => {throw err})
+    .catch((err) => {throw err});
 
 
 // 读文件方法3 ,在commonJS环境中使用
@@ -30,3 +30,28 @@ fsPromise.readFile(filePath)
         throw err;
     } 
 })();
+
+// 先定义，后调用
+const func1 = (async function(){
+    try{
+        const data = await fsPromise.readFile(filePath);
+        // console.log("async/await语法[先定义，再调用]：" + data.toString())
+        return data;
+    }catch(err) {
+        throw err;
+    } 
+})
+
+const data = func1()
+console.log("data:" + func1());
+
+
+// try{
+//     const  data1 = await fs.readFile('file1.txt');
+//     const  data2 = await fs.readFile('file2.txt');
+//     await fs.writeFile('file3.txt', data1+data2);
+
+// }catch(err) {
+//     // 异常写日志
+//     throw err;
+// }

@@ -3,6 +3,7 @@ const express = require("express")
 const userModel = require("../model/userModel")
 const Result = require("../api/result")
 const userRouter = express.Router()
+const userModelPromise = require("../model/userModelPromise")
 
 // 响应前段用户列表请求
 userRouter.get("/user/list", (req, res) => {
@@ -17,6 +18,20 @@ userRouter.get("/user/list", (req, res) => {
         }
     })
 });
+
+// aysnc/await实现的数据查找
+userRouter.get("/user/list2", async (req, res) => {
+    try{
+        // 从数据库获取用户列表，返回给前端
+        const data = await userModelPromise.getUserList();
+        // console.log(data)
+        res.send(data);
+    }catch(err) {
+        //处理异常
+        res.setStatus(500).send(err)   
+    }
+});
+
 
 // 保存用户信息
 userRouter.post("/user/save", (req, res) =>{
